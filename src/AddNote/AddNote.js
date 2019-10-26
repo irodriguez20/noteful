@@ -3,7 +3,7 @@ import NotefulForm from '../NotefulForm/NotefulForm'
 import ApiContext from '../ApiContext'
 import config from '../config'
 import './AddNote.css'
-
+import PropTypes from 'prop-types';
 export default class AddNote extends Component {
   static defaultProps = {
     history: {
@@ -18,7 +18,6 @@ export default class AddNote extends Component {
       name: e.target['note-name'].value,
       content: e.target['note-content'].value,
       folderId: e.target['note-folder-id'].value,
-      modified: new Date(),
     }
     fetch(`${config.API_ENDPOINT}/notes`, {
       method: 'POST',
@@ -81,4 +80,8 @@ export default class AddNote extends Component {
       </section>
     )
   }
+}
+
+AddNote.defaultProps = {
+  history: PropTypes.Object,
 }
