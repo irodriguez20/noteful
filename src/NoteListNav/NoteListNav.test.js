@@ -1,9 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import NoteListNav from './NoteListNav';
+import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<NoteListNav />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+describe(`NoteListNav component`, () => {
+  it('renders a .NoteListNav by default', () => {
+    const wrapper = shallow(<NoteListNav />)
+    expect(toJson(wrapper)).toMatchSnapshot()
+  })
+})

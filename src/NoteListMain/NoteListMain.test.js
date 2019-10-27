@@ -1,9 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import NoteListMain from './NoteListMain';
+import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<NoteListMain />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+
+describe(`NoteListMane component`, () => {
+  it('renders a .NoteListMain by default', () => {
+    const wrapper = shallow(<NoteListMain />)
+    expect(toJson(wrapper)).toMatchSnapshot()
+  })
+})

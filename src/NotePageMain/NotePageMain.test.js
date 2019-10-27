@@ -1,9 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import NotePageMain from './NotePageMain';
+import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<NotePageMain />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+
+describe(`NotePageMain component`, () => {
+
+  it('renders a .NotePageMain by default', () => {
+    const wrapper = shallow(<NotePageMain />)
+    expect(toJson(wrapper)).toMatchSnapshot()
+  })
+})
