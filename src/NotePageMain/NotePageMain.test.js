@@ -1,7 +1,7 @@
 import React from "react";
 import NotePageMain from "./NotePageMain";
 import { shallow } from "enzyme";
-import shallowToJson from "../src/shallow";
+import shallowToJson from "enzyme-to-json";
 
 describe(`NotePageMain component`, () => {
   it("renders a .NotePageMain by default", () => {
