@@ -1,13 +1,11 @@
-import React from 'react';
-import NotePageMain from './NotePageMain';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
-
+import React from "react";
+import NotePageMain from "./NotePageMain";
+import { shallow } from "enzyme";
+import shallowToJson from "../src/shallow";
 
 describe(`NotePageMain component`, () => {
-
-  it('renders a .NotePageMain by default', () => {
-    const wrapper = shallow(<NotePageMain />)
-    expect(toJson(wrapper)).toMatchSnapshot()
-  })
-})
+  it("renders a .NotePageMain by default", () => {
+    const wrapper = shallow(<NotePageMain />);
+    expect(shallowToJson(wrapper)).toMatchSnapshot();
+  });
+});
