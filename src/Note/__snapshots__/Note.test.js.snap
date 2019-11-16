@@ -78,8 +78,22 @@ exports[`Note component  renders the Note given props 1`] = `
       title=""
       transform={null}
     />
-     
-    remove
+     remove
   </button>
+  <div
+    className="Note_dates"
+  >
+    <div
+      className="Note_dates-modified"
+    >
+      Modified
+       
+      <span
+        className="Date"
+      >
+        2019-01-15
+      </span>
+    </div>
+  </div>
 </div>
 `;
