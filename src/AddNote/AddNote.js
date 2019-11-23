@@ -22,7 +22,7 @@ export default class AddNote extends Component {
       folderId: e.target["note-folder-id"].value,
       modified: new Date()
     };
-    console.log(newNote.modified);
+    console.log('date', newNote.modified);
     fetch(`${config.API_ENDPOINT}/notes`, {
       method: "POST",
       headers: {
@@ -36,6 +36,7 @@ export default class AddNote extends Component {
       })
       .then(note => {
         this.context.addNote(note);
+        console.log('note', note);
         this.props.history.push(`/folder/${note.folderId}`);
       })
       .catch(error => {

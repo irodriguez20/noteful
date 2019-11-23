@@ -9,37 +9,43 @@ import PropTypes from "prop-types";
 
 export default class Note extends React.Component {
   static defaultProps = {
-    onDeleteNote: () => { }
+    onDeleteNote: () => { },
+    history: {
+      push: () => { }
+    }
+
   };
   static contextType = ApiContext;
 
   handleClickDelete = e => {
     e.preventDefault();
-    const noteId = this.props.id;
+    console.log('in handle click delete');
 
-    fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
-      method: "DELETE",
-      headers: {
-        "content-type": "application/json"
-      }
-    })
-      .then(res => {
-        if (!res.ok) return res.json().then(e => Promise.reject(e));
-        return res.json();
-      })
-      .then(() => {
-        this.context.deleteNote(noteId);
-        // allow parent to perform extra behaviour
-        this.props.onDeleteNote(noteId);
-      })
-      .catch(error => {
-        console.error({ error });
-      });
+    // fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
+    //   method: "DELETE",
+    //   headers: {
+    //     "content-type": "application/json"
+    //   }
+    // })
+    //   .then(res => {
+    //     if (!res.ok) return res.json().then(e => Promise.reject(e));
+    //     return res.json();
+    //   })
+    //   .then(() => {
+    //     this.context.deleteNote(noteId);
+    //     // allow parent to perform extra behaviour
+    //     this.props.onDeleteNote(noteId);
+    //     this.props.history.goBack()
+    //   })
+
+    //   .catch(error => {
+    //     console.error({ error });
+    //   });
   };
 
   render() {
     const { name, id, modified } = this.props;
-    console.log("modified", modified);
+    console.log('props id in render', this.props.id)
     return (
       <div className="Note">
         <h2 className="Note__title">
