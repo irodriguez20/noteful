@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Note from '../Note/Note'
 import ApiContext from '../ApiContext'
 import { findNote } from '../notes-helpers'
 import './NotePageMain.css'
+import { throwStatement } from '@babel/types'
 
-export default class NotePageMain extends React.Component {
+export default class NotePageMain extends Component {
   static defaultProps = {
     match: {
       params: {}
@@ -13,7 +14,6 @@ export default class NotePageMain extends React.Component {
   static contextType = ApiContext
 
   handleDeleteNote = noteId => {
-    this.context.de
     this.props.history.push(`/`)
   }
 
