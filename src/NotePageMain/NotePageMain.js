@@ -3,7 +3,7 @@ import Note from '../Note/Note'
 import ApiContext from '../ApiContext'
 import { findNote } from '../notes-helpers'
 import './NotePageMain.css'
-import { throwStatement } from '@babel/types'
+
 
 export default class NotePageMain extends Component {
   static defaultProps = {
@@ -14,7 +14,8 @@ export default class NotePageMain extends Component {
   static contextType = ApiContext
 
   handleDeleteNote = noteId => {
-    this.props.history.push(`/`)
+    console.log('in handleDeleteNote', noteId);
+    this.props.history.push('/')
   }
 
   render() {

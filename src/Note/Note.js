@@ -9,36 +9,33 @@ import PropTypes from "prop-types";
 
 export default class Note extends React.Component {
   static defaultProps = {
-    onDeleteNote: () => { },
-    history: {
-      push: () => { }
-    }
-
+    onDeleteNote: () => { }
   };
   static contextType = ApiContext;
 
   handleClickDelete = e => {
     e.preventDefault();
-    console.log('in handle click delete');
+    console.log("in handle click delete");
     debugger;
-    const noteId = this.props.id
-    this.context.deleteNote(noteId);
+    const noteId = this.props.id;
+    // this.context.deleteNote(noteId);
 
     fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json"
-      }
+      },
     })
       .then(res => {
-        if (!res.ok) return res.json().then(e => Promise.reject(e));
+        if (!res.ok)
+          return res.json().then(e => Promise.reject(e));
         return res.json();
       })
       .then(() => {
         this.context.deleteNote(noteId);
-        // allow parent to perform extra behaviour
         this.props.onDeleteNote(noteId);
-        this.props.history.goBack()
+        this.props.history.goBack('/')
+        // allow parent to perform extra behaviour
       })
 
       .catch(error => {
@@ -48,7 +45,7 @@ export default class Note extends React.Component {
 
   render() {
     const { name, id, modified } = this.props;
-    console.log('props id in render', this.props.id)
+    console.log("props id in render", this.props.id);
     return (
       <div className="Note">
         <h2 className="Note__title">
@@ -59,7 +56,9 @@ export default class Note extends React.Component {
           type="button"
           onClick={this.handleClickDelete}
         >
-          <FontAwesomeIcon icon="trash-alt" /> remove
+          <FontAwesomeIcon icon="trash-alt" />
+          {" "}
+          remove
         </button>
         <div className="Note_dates">
           <div className="Note_dates-modified">
