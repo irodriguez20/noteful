@@ -29,6 +29,7 @@ export default class NotePageMain extends Component {
           name={note.name}
           modified={note.modified}
           onDeleteNote={this.handleDeleteNote}
+          history={this.props.history}
         />
         <div className='NotePageMain__content'>
           {note.content.split(/\n \r|\n/).map((para, i) =>
