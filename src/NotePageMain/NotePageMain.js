@@ -14,7 +14,6 @@ export default class NotePageMain extends Component {
   static contextType = ApiContext
 
   handleDeleteNote = noteId => {
-    console.log('in handleDeleteNote', noteId);
     this.props.history.push('/')
   }
 

@@ -8,14 +8,10 @@ import { format } from "date-fns";
 import PropTypes from "prop-types";
 
 export default class Note extends React.Component {
-  static defaultProps = {
-    // onDeleteNote: () => { }
-  };
   static contextType = ApiContext;
 
   handleClickDelete = e => {
     e.preventDefault();
-    console.log("in handle click delete");
     const noteId = this.props.id;
     // this.context.deleteNote(noteId);
 
@@ -31,7 +27,6 @@ export default class Note extends React.Component {
         return res.json();
       })
       .then(() => {
-        console.log('then statement of Note.js', this.props, this.context)
         this.context.deleteNote(noteId);
         this.props.onDeleteNote(noteId);
         this.props.history.push('/')
@@ -44,7 +39,6 @@ export default class Note extends React.Component {
 
   render() {
     const { name, id, modified } = this.props;
-    console.log("props id in render", this.props.modified);
     return (
       <div className="Note">
         <h2 className="Note__title">
@@ -72,6 +66,3 @@ export default class Note extends React.Component {
   }
 }
 
-Note.defaultProps = {
-  onDeleteNote: PropTypes.func
-};
