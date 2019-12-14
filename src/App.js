@@ -115,6 +115,10 @@ class App extends Component {
           path='/add-note'
           component={AddNote}
         />
+        <Route
+          path='/edit/:noteId'
+          component={EditNote}
+        />
       </>
     )
   }
@@ -126,6 +130,7 @@ class App extends Component {
       addFolder: this.handleAddFolder,
       addNote: this.handleAddNote,
       deleteNote: this.handleDeleteNote,
+      updateNote: this.updateNote,
     }
     return (
       <ApiContext.Provider value={value}>
