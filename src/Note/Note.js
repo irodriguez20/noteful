@@ -5,7 +5,7 @@ import ApiContext from "../ApiContext";
 import config from "../config";
 import "./Note.css";
 import { format } from "date-fns";
-import PropTypes from "prop-types";
+//import PropTypes from "prop-types";
 
 export default class Note extends React.Component {
   static contextType = ApiContext;
@@ -22,6 +22,7 @@ export default class Note extends React.Component {
       },
     })
       .then(res => {
+        console.log('Delete res', res)
         if (!res.ok)
           return res.json().then(e => Promise.reject(e));
         return res.json();
@@ -39,6 +40,7 @@ export default class Note extends React.Component {
 
   render() {
     const { name, id, modified } = this.props;
+    console.log(this.props);
     return (
       <div className="Note">
         <h2 className="Note__title">

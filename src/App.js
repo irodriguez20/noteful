@@ -9,6 +9,7 @@ import AddFolder from './AddFolder/AddFolder'
 import AddNote from './AddNote/AddNote'
 import ApiContext from './ApiContext'
 import config from './config'
+import EditNote from './EditNote/EditNote'
 import './App.css'
 
 class App extends Component {
