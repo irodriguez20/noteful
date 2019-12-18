@@ -18,7 +18,7 @@ export const findNote = (notes = [], noteId) => {
         //  result = notes.filter(note => note.folderid === folderId)}
     }
     console.log('findNote result', result)
-    return result
+    return result[0]
 }
 
 export const getNotesForFolder = (notes = [], folderId) => {
