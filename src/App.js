@@ -61,8 +61,20 @@ class App extends Component {
   }
 
   handleDeleteNote = noteId => {
+    const newNotes = this.state.notes.filter(note => note.id !== noteId)
     this.setState({
-      notes: this.state.notes.filter(note => note.id !== noteId)
+      notes: newNotes
+    })
+  }
+
+
+  updateNote = updatedNote => {
+    this.setState({
+      notes: this.state.notes.map(note =>
+        (note.id !== updatedNote.id)
+          ? note
+          : updatedNote
+      )
     })
   }
 
@@ -89,6 +101,10 @@ class App extends Component {
           path='/add-note'
           component={NotePageNav}
         />
+        {/* <Route
+          path='/edit/:noteId'
+          component={EditNote}
+        /> */}
       </>
     )
   }

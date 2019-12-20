@@ -3,8 +3,10 @@ import NotefulForm from "../NotefulForm/NotefulForm";
 import ApiContext from "../ApiContext";
 import config from "../config";
 import PropTypes from "prop-types";
+import { countNotesForFolder } from '../notes-helpers'
+import './EditNote.css'
 
-const Required = () => (<span className="UpdateNote_required">*</span>);
+// const Required = () => (<span className="UpdateNote_required">*</span>);
 
 class EditNote extends Component {
     static propTypes = {
@@ -23,17 +25,19 @@ class EditNote extends Component {
         id: "",
         name: "",
         modified: "",
-        folderId: 1,
+        folderid: 1,
         content: ""
     };
 
 
     componentDidMount() {
         const { noteId } = this.props.match.params;
-        fetch(config.API_ENDPOINT + `${noteId}`, {
-            method: "GET"
+        fetch(config.API_ENDPOINT + `/notes/${noteId}`, {
+            method: "GET",
+
         })
             .then(res => {
+                console.log('in editNote', noteId)
                 if (!res.ok) {
                     return res.json().then(error => Promise.reject(error));
                 }
@@ -44,7 +48,7 @@ class EditNote extends Component {
                     id: responseData.id,
                     name: responseData.name,
                     modified: responseData.modified,
-                    folderId: responseData.folderId,
+                    folderid: responseData.folderid,
                     content: responseData.content
                 });
             })
@@ -63,7 +67,7 @@ class EditNote extends Component {
     };
 
     handleChangeFolderId = e => {
-        this.setState({ folderId: e.taret.value });
+        this.setState({ folderid: e.target.value });
     };
 
     handleChangeContent = e => {
@@ -74,10 +78,10 @@ class EditNote extends Component {
         e.preventDefault();
 
         const { noteId } = this.props.match.params;
-        const { id, name, content, folderId, modified } = this.state;
-        const updatedNote = { id, name, content, folderId, modified };
+        const { id, name, content, folderid, modified } = this.state;
+        const updatedNote = { id, name, content, folderid, modified };
         console.log("date", updatedNote.modified);
-        fetch(config.API_ENDPOINT + `${noteId}`, {
+        fetch(config.API_ENDPOINT + `/notes/${noteId}`, {
             method: "PATCH",
             body: JSON.stringify(updatedNote),
             headers: {
@@ -89,7 +93,7 @@ class EditNote extends Component {
             })
             .then(() => {
                 this.resetFields(updatedNote);
-                this.context.updatedNote(updatedNote);
+                this.context.updateNote(updatedNote);
                 this.props.history.push("/");
             })
             .catch(error => {
@@ -103,7 +107,7 @@ class EditNote extends Component {
             id: newFields.id || "",
             name: newFields.name || "",
             content: newFields.content || "",
-            folderId: newFields.folderId || "",
+            folderid: newFields.folderid || "",
             modified: newFields.modified || ""
         });
     };
@@ -113,7 +117,7 @@ class EditNote extends Component {
     };
 
     render() {
-        const { name, folderId, content, error } = this.state;
+        const { name, folderid, content, error } = this.state;
         const { folders = [] } = this.context;
         return (
             <section className="UpdateNote">
@@ -130,9 +134,9 @@ class EditNote extends Component {
                         <label htmlFor="note-name-input">Name</label>
                         <input
                             type="text"
-                            id="note-name-input"
-                            name="note-name"
-                            Required
+                            id="name"
+                            name="name"
+                            required
                             value={name}
                             onChange={this.handleChangeName}
                         />
@@ -140,9 +144,9 @@ class EditNote extends Component {
                     <div className="field">
                         <label htmlFor="note-content-input">Content</label>
                         <textarea
-                            id="note-content-input"
-                            name="note-content"
-                            Required
+                            id="content"
+                            name="content"
+                            required
                             value={content}
                             onChange={this.handleChangeContent}
                         />
@@ -150,14 +154,14 @@ class EditNote extends Component {
                     <div className="field">
                         <label htmlFor="note-folder-select">Folder</label>
                         <select
-                            id="note-folder-select"
-                            name="note-folder-id"
-                            Required
+                            id="folderid"
+                            name="folderid"
+                            required
                             onChange={this.handleChangeFolderId}
                         >
-                            <option value={folderId}>...</option>
+                            <option value={folderid}>...</option>
                             {folders.map(folder => (
-                                <option key={folder.id} value={folder.id}>
+                                <option key={folder.id} value={folder.id} name="folderid">
                                     {folder.folder_name}
                                 </option>
                             ))}

@@ -6,17 +6,18 @@ import "./AddFolder.css";
 import PropTypes from "prop-types";
 
 export default class AddFolder extends Component {
-  static defaultProps = {
-    history: {
-      push: () => {}
-    }
+  static propTypes = {
+    history: PropTypes.shape({
+      push: () => { }
+    }).isRequired,
   };
   static contextType = ApiContext;
 
   handleSubmit = e => {
     e.preventDefault();
+    const { folder_name } = e.target
     const folder = {
-      name: e.target["folder-name"].value
+      folder_name: folder_name.value
     };
     fetch(`${config.API_ENDPOINT}/folders`, {
       method: "POST",
@@ -31,7 +32,7 @@ export default class AddFolder extends Component {
       })
       .then(folder => {
         this.context.addFolder(folder);
-        this.props.history.push(`/folder/${folder.id}`);
+        this.props.history.push(`/`);
       })
       .catch(error => {
         console.error({ error });
@@ -47,8 +48,8 @@ export default class AddFolder extends Component {
             <label htmlFor="folder-name-input">Name</label>
             <input
               type="text"
-              id="folder-name-input"
-              name="folder-name"
+              id="folder_name"
+              name="folder_name"
               required
             />
           </div>
