@@ -11,6 +11,11 @@ exports[`Note component  renders a .Note by default 1`] = `
       to="/note/undefined"
     />
   </h2>
+  <Link
+    to="/edit/undefined"
+  >
+    Edit Note
+  </Link>
   <button
     className="Note__delete"
     onClick={[Function]}
@@ -38,6 +43,19 @@ exports[`Note component  renders a .Note by default 1`] = `
      
     remove
   </button>
+  <div
+    className="Note_dates"
+  >
+    <div
+      className="Note_dates-modified"
+    >
+      Modified
+       
+      <span
+        className="Date"
+      />
+    </div>
+  </div>
 </div>
 `;
 
@@ -54,6 +72,11 @@ exports[`Note component  renders the Note given props 1`] = `
       test-class-name
     </Link>
   </h2>
+  <Link
+    to="/edit/a"
+  >
+    Edit Note
+  </Link>
   <button
     className="Note__delete"
     onClick={[Function]}
@@ -78,7 +101,8 @@ exports[`Note component  renders the Note given props 1`] = `
       title=""
       transform={null}
     />
-     remove
+     
+    remove
   </button>
   <div
     className="Note_dates"

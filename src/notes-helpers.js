@@ -5,7 +5,7 @@ export const findFolder = (folders = [], folderId) =>
 
 export const findNote = (notes = [], noteId) => {
     let result = notes
-    console.log('in findNote', noteId)
+
     if (noteId) {
         result = []
         for (var i = 0; i < notes.length; ++i) {
@@ -17,14 +17,14 @@ export const findNote = (notes = [], noteId) => {
         }
         //  result = notes.filter(note => note.folderid === folderId)}
     }
-    console.log('findNote result', result)
+
     return result[0]
 }
 
 export const getNotesForFolder = (notes = [], folderId) => {
 
     let result = notes
-    console.log('in getNotesForFolder', folderId)
+
     if (folderId) {
         result = []
         for (var i = 0; i < notes.length; ++i) {

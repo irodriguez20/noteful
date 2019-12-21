@@ -11,16 +11,21 @@ exports[`AddNote component renders the complete form 1`] = `
     onSubmit={[Function]}
   >
     <div
+      className="AddBookmark__error"
+      role="alert"
+    />
+    <div
       className="field"
     >
       <label
         htmlFor="note-name-input"
       >
         Name
+         
       </label>
       <input
-        id="note-name-input"
-        name="note-name"
+        id="name"
+        name="name"
         required={true}
         type="text"
       />
@@ -32,10 +37,11 @@ exports[`AddNote component renders the complete form 1`] = `
         htmlFor="note-content-input"
       >
         Content
+         
       </label>
       <textarea
-        id="note-content-input"
-        name="note-content"
+        id="content"
+        name="content"
         required={true}
       />
     </div>
@@ -46,10 +52,11 @@ exports[`AddNote component renders the complete form 1`] = `
         htmlFor="note-folder-select"
       >
         Folder
+         
       </label>
       <select
-        id="note-folder-select"
-        name="note-folder-id"
+        id="folderId"
+        name="folderId"
         required={true}
       >
         <option

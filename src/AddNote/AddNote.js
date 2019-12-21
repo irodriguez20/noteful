@@ -37,7 +37,6 @@ export default class AddNote extends Component {
       }
     })
       .then(res => {
-        console.log("newNote folderId", newNote.folderId);
         if (!res.ok) {
           return res.json().then(e => Promise.reject(e));
         }

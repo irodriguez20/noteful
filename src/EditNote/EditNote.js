@@ -37,7 +37,6 @@ class EditNote extends Component {
 
         })
             .then(res => {
-                console.log('in editNote', noteId)
                 if (!res.ok) {
                     return res.json().then(error => Promise.reject(error));
                 }
@@ -80,7 +79,7 @@ class EditNote extends Component {
         const { noteId } = this.props.match.params;
         const { id, name, content, folderid, modified } = this.state;
         const updatedNote = { id, name, content, folderid, modified };
-        console.log("date", updatedNote.modified);
+
         fetch(config.API_ENDPOINT + `/notes/${noteId}`, {
             method: "PATCH",
             body: JSON.stringify(updatedNote),

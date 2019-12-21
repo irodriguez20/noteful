@@ -14,7 +14,7 @@ export default class Note extends React.Component {
     e.preventDefault();
     const noteId = this.props.id;
     // this.context.deleteNote(noteId);
-    console.log('handleClickDelete in Note.js noteId', noteId)
+
 
     fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
       method: "DELETE",
@@ -23,7 +23,7 @@ export default class Note extends React.Component {
       },
     })
       .then(res => {
-        console.log('Delete res', res)
+
         if (!res.ok)
           return res.json().then(e => Promise.reject(e));
         // return res.json();
