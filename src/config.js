@@ -1,3 +1,3 @@
 module.exports = {
-  API_ENDPOINT: `https://morning-reaches-32277.herokuapp.com/api/`
+  API_ENDPOINT: `https://morning-reaches-32277.herokuapp.com/api`
 }
